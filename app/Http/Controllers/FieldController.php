@@ -76,7 +76,8 @@ class FieldController extends Controller
             'growth_stage' => 'SEED'
         ]);
 
-        // Set crop_id for field
+        // Remove crop from validated data and set crop_id, crop_name
+        unset($validated['crop']);
         $validated['crop_id'] = $crop->id;
         $validated['crop_name'] = $crop->name;
 

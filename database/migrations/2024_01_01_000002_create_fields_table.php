@@ -17,7 +17,7 @@ return new class extends Migration
             $table->decimal('temperature')->default(30.0);
             $table->decimal('moisture')->default(65.0);
             $table->string('condition');
-            $table->boolean('valve_state')->default(false);
+            $table->string('valve_state');
             $table->timestamps();
         });
     }
