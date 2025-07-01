@@ -22,10 +22,6 @@ class Field extends Model
         'valve_state'
     ];
 
-    protected $casts = [
-        'valve_state' => 'boolean',
-    ];
-
     public function waterLogs(): HasMany
     {
         return $this->hasMany(WateringLog::class);
