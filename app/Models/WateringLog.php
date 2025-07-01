@@ -23,16 +23,6 @@ class WateringLog extends Model
         'end_time' => 'datetime'
     ];
 
-    protected static function boot()
-    {
-        parent::boot();
-        
-        static::creating(function ($wateringLog) {
-            $start = Carbon::parse($wateringLog->start_time);
-            $end = Carbon::parse($wateringLog->end_time);
-            $wateringLog->duration = $end->diffInMinutes($start);
-        });
-    }
 
     public function field(): BelongsTo
     {
