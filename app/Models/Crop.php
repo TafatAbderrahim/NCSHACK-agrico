@@ -1,0 +1,21 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+
+class Crop extends Model
+{
+    use HasFactory;
+
+    protected $fillable = [
+        'name',
+        'watering_frequency',
+        'growth_stage',
+    ];
+
+    public function fields(): HasMany
+    {
+        return $this->hasMany(Field::class);
+    }
+}
