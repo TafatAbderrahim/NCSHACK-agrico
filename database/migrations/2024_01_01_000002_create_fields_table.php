@@ -13,11 +13,10 @@ return new class extends Migration
             $table->string('name');
             $table->decimal('surface');
             $table->foreignId('crop_id')->constrained()->onDelete('cascade');
-            $table->string('crop_name');
             $table->decimal('temperature')->default(30.0);
             $table->decimal('moisture')->default(65.0);
             $table->string('condition');
-            $table->string('valve_state');
+            $table->boolean('valve_state')->default(false);
             $table->timestamps();
         });
     }

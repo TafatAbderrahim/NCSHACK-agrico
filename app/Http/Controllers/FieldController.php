@@ -66,7 +66,7 @@ class FieldController extends Controller
             'surface' => 'required|numeric|min:0',
             'crop' => 'required|string',
             'condition' => 'required|string',
-            'valve_state' => 'string'
+            'valve_state' => 'string'  // Changed from 'string' to 'boolean'
         ]);
 
         // Create new crop
@@ -76,16 +76,20 @@ class FieldController extends Controller
             'growth_stage' => 'SEED'
         ]);
 
-        // Remove crop from validated data and set crop_id, crop_name
-        unset($validated['crop']);
-        $validated['crop_id'] = $crop->id;
-        $validated['crop_name'] = $crop->name;
-
         // Get weather data
         $weather = $this->getWeatherData();
-        $validated = array_merge($validated, $weather);
-        
-        $field = Field::create($validated);
+
+        // Prepare field data
+        $field = Field::create([
+            'name' => $validated['name'],
+            'surface' => $validated['surface'],
+            'condition' => $validated['condition'],
+            'valve_state' =>  $validated['valve_state'],
+            'crop_id' => $crop->id,
+            'temperature' => $weather['temperature'],
+            'moisture' => $weather['moisture']
+        ]);
+
         return response()->json($field->load('crop'), 201);
     }
 

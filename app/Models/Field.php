@@ -15,9 +15,8 @@ class Field extends Model
         'name',
         'surface',
         'crop_id',
-        'crop',
-        'moisture',
         'temperature',
+        'moisture',
         'condition',
         'valve_state'
     ];
