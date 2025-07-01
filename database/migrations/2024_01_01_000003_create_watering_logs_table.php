@@ -10,10 +10,10 @@ return new class extends Migration
     {
         Schema::create('watering_logs', function (Blueprint $table) {
             $table->id();
-            $table->timestamp('timestamp');
-            $table->integer('duration');
-            $table->string('method');
-            $table->foreignId('field_id')->constrained();
+            $table->foreignId('field_id')->constrained()->onDelete('cascade');
+            $table->timestamp('start_time');
+            $table->timestamp('end_time');
+            $table->enum('method', ['SPRINKLER', 'DRIP', 'FLOOD']);
             $table->timestamps();
         });
     }

@@ -8,19 +8,17 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create('fields', function (Blueprint $table) {
+        Schema::create('crops', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('crop');
-            $table->float('moisture');
-            $table->float('temperature');
-            
+            $table->decimal('watering_frequency')->default(0);
+            $table->enum('growth_stage', ['SEED', 'SPROUT', 'VEGETATIVE', 'FLOWERING', 'RIPENING'])->default('SEED');
             $table->timestamps();
         });
     }
 
     public function down(): void
     {
-        Schema::dropIfExists('fields');
+        Schema::dropIfExists('crops');
     }
 };
